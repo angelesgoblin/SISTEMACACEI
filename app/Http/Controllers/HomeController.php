@@ -27,10 +27,8 @@ class HomeController extends Controller
         //return view('homeRH');
 
     }
-    public function indexRH()
-    {
-       // return view('home');
-        return view('homeRH');
 
-    }
+   
+    
+   
 }
