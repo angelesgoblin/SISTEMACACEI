@@ -58,8 +58,8 @@
 
                                     <td>
                                     <form action="{{ route('carreras.destroy',$carrera->clave_oficial) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('carreras.show',$carrera->clave_oficial) }}"><i class="fa fa-fw fa-eye"></i>Mostrar</a>
-                                                    <!--<a class="btn btn-sm btn-success" href="{{ route('carreras.edit',$carrera->clave_oficial) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                             <!--       <a class="btn btn-sm btn-primary " href="{{ route('carreras.show',$carrera->clave_oficial) }}"><i class="fa fa-fw fa-eye"></i>Mostrar</a>
+                                                    <a class="btn btn-sm btn-success" href="{{ route('carreras.edit',$carrera->clave_oficial) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>-->

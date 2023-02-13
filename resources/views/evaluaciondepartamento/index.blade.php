@@ -56,11 +56,10 @@
                     <table id="keywords" cellspacing="0" cellpadding="0">
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>RFC</th>
+                            <th>Docente</th>
                             <th>Periodo</th>
-                            <th>calificación cuantitativa</th>
-                            <th>calificación cualitativa</th>
+                            <th>Calificación cuantitativa</th>
+                            <th>Calificación cualitativa</th>
                             <th>Documento</th>
                             <th></th>
                             
@@ -78,10 +77,9 @@
                                         @else
                                     @foreach ($evaluaciondepartamentos as $evaluaciondepartamento)
                                         <tr>
-                                            <td>{{$evaluaciondepartamento->id}}</td>
                                             
-											<td class="align">{{ $evaluaciondepartamento->rfc }}</td>
-											<td class="align">{{ $evaluaciondepartamento->periodo }}</td>
+											<td class="align">{{ $evaluaciondepartamento->apellidos_empleado }} {{ $evaluaciondepartamento->nombre_empleado }}</td>
+											<td class="align">{{ $evaluaciondepartamento->identificacion_corta }}</td>
 											<td class="align">{{ $evaluaciondepartamento->calificacion_cuantitativa }}</td>
 											<td class="align">{{ $evaluaciondepartamento->calificacion_cualitativa }}</td>
 											<td class="align"><a href="{{ route('evaluaciondepartamentos.download', $evaluaciondepartamento->id)}}">

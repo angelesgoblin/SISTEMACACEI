@@ -25,6 +25,7 @@
                         <div class="table-responsive">
 
 <!-------------Buscar---------------------->
+<!-------------Buscar---------------------->
 <div class="col-xl-12 ">
     <form action="{{route('cedulaceros.index')}}" method="get">
    
@@ -36,10 +37,11 @@
         <center><div class="col-sm-10">
 
        
-            <div class="input-group">
-                    <input type="text" class="form-control" id="texto1"name="texto1" value="{{@$texto1}}" placeholder="Ingrese Nombre" >
-                    <input type="text" class="form-control" name="texto2" value="{{@$texto2}}" placeholder="Ingrese clave de periodo">
-            
+            <div class="form-group">
+                   <input type="text" class="form-control" id="texto1"name="texto1" value="{{@$texto1}}" placeholder="Ingrese Departamento" >
+                    <input type="text" class="form-control" name="texto2" value="{{@$texto2}}" 
+                    placeholder="Ingrese clave de periodo">
+              
                     <input type="submit" class="btn btn-primary" value="Buscar" >
                     
             </div>
@@ -49,6 +51,7 @@
         </div>
     </form>
 </div>
+<!-------------Buscar---------------------->
 <!-------------Buscar---------------------->
 <section class="content container-fluid">
         <div class="row">
@@ -62,10 +65,11 @@
                     <table id="keywords" cellspacing="0" cellpadding="0">
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>RFC</th>
+                        <!--     <th>ID</th>-->
+                            <th>Docente</th>
                             <th>Periodo</th>
-                            <th>Documento</th>
+                            <th>Cedula cero</th>
+                            <th>Horario</th>
                             <th></th>
                      <!--      <th><a href="{{ route('cedulaceros.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
                 {{ __('Registrar nuevo') }}
@@ -84,16 +88,18 @@
                                         @else
                                     @foreach ($cedulaceros as $cedulacero)
                                         <tr>
-                                            <td>{{ $cedulacero->id }}</td>
+                                       <!--      <td>{{ $cedulacero->id }}</td>-->
                                             
-											<td class="align">{{$cedulacero->rfc}}</td>
-											<td class="align">{{$cedulacero->periodo}}</td>
+											<td class="align">{{$cedulacero->apellidos_empleado}} {{$cedulacero->nombre_empleado}}</td>
+											<td class="align">{{$cedulacero->identificacion_corta}}</td>
 											<td class="align"><a href="{{ route('cedulaceros.download', $cedulacero->id)}}">
                                                 {{$cedulacero->documento}}</a></td> 
+                                            <td class="align"><a href="{{ route('cedulaceros.download', $cedulacero->id)}}">
+                                                {{$cedulacero->documentoh}}</a></td> 
                                             
                                             <td>
                                                 <form action="{{ route('cedulaceros.destroy',$cedulacero->id) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('cedulaceros.show',$cedulacero->id) }}"><i class="fa fa-fw fa-eye"></i> Mostrar</a>
+                                            <!--        <a class="btn btn-sm btn-primary " href="{{ route('cedulaceros.show',$cedulacero->id) }}"><i class="fa fa-fw fa-eye"></i> Mostrar</a>-->
                                                    <a class="btn btn-sm btn-success" href="{{ route('cedulaceros.edit',$cedulacero->id) }}"><i class="fa fa-fw fa-edit"></i> Editar</a>
                                                     
                                                 </form>

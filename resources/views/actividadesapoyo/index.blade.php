@@ -31,31 +31,18 @@
                     <table id="keywords" cellspacing="0" cellpadding="0">
                         <thead>
                         <tr>
-                            <th><span>No.</span></th>
-                            <th><span>Actividad</span></th>
                             <th><span>Descripción</span></th>
 
-                            @can('actividadesapoyos.index')
-                            <th><span><a href="{{ route('actividadesapoyos.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                {{ __('Registrar nuevo') }}
-                            </a></span></th>
-                            @endcan
-                            
                         </tr>
                         </thead>
                         <tbody>
 
                                 @foreach ($actividadesapoyos as $actividadesapoyo)
                                 <tr>
-                                    <td>{{ ++$i }}</td>
-
-                                    <td class="align">{{ $actividadesapoyo->actividad }}</td>
                                     <td class="align">{{ $actividadesapoyo->descripcion_actividad }}</td>
                                     <td>
                                     <form action="{{ route('actividadesapoyos.destroy',$actividadesapoyo->actividad) }}" method="POST">
-                                    @can('actividadesapoyos.index')    
-                                    <a class="btn btn-sm btn-primary " href="{{ route('actividadesapoyos.show',$actividadesapoyo->actividad) }}"><i class="fa fa-fw fa-eye"></i>Motrar</a>
-                                    @endcan        
+                                          
                                 </form>
                                     </td>
                                  </tr>

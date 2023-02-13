@@ -15,8 +15,10 @@
                 <div class="card">
                     <div class="float-left">
                 <div class="card-header" style="background-color: #EBF5FB;">
-                <div class="float-left">
-                    <h3>Editar evaluación</h3></div>
+                
+                    <h3>Editar evaluación</h3>
+                
+                </div>
                         
                             
                     </div>

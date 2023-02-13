@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('template_title')
-    Grupo
+    Catalogodocente
 @endsection
 
 @section('content')
@@ -23,52 +23,46 @@
                     @endif
                     <div class="card-body">
                         <div class="table-responsive">
+
                 <body>
                     <div id="wrapper" class="border">
-                    <h1>Grupos</h1>
-                    
+                    <h1>Catálogo de docentes</h1>
+                    <h1>Horario</h1>
+                                    <label style="text-transform: uppercase">{{$catalogodocente->rfc}}</label>
+                                    <br/>
+                   
                     <table id="keywords" cellspacing="0" cellpadding="0">
                         <thead>
-                                    <tr>
-                                        <th>No.</th>
-                                        
-										<th>Periodo</th>
-										<th>Materia</th>
-										<th>Grupo</th>
-										<th>Alumnos Inscritos</th>
-										<th>RFC</th>
-									    <th>Tipo de Personal</th>
-                                        <th><span>               </span></th>
-                                        
-                                    </tr>
-                                </thead>
+                        <tr>
+                            
+                            <th><span>Cedula cero</span></th>
+                            <th><span>                </span></th>
+                           
+                        </tr>
+                        </thead>
                                 <tbody>
-                                    @foreach ($grupos as $grupo)
+                                  
                                         <tr>
-                                            <td>{{ ++$i }}</td>
-                                            
-											<td>{{ $grupo->periodo }}</td>
-											<td>{{ $grupo->materia }}</td>
-											<td>{{ $grupo->grupo }}</td>
-											<td>{{ $grupo->alumnos_inscritos }}</td>
-											<td>{{ $grupo->rfc }}</td>
-											<td>{{ $grupo->tipo_personal }}</td>
+											<td class="align">{{ $catalogodocente->documento }}</td>
 
                                             <td>
-                                                <form action="{{ route('grupos.destroy',$grupo->codigo)}}" method="POST">
-                                           <!--         <a class="btn btn-sm btn-primary " href="{{ route('grupos.show',$grupo->codigo) }}"><i class="fa fa-fw fa-eye"></i>Mostrar</a>-->
-                                           
+                                                <form action="{{ route('catalogodocentes.destroy',$catalogodocente->rfc) }}" method="POST">
+                                                
                                                 </form>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                        
                                 </tbody>
                             </table>
+
                         </div>
                         </body>
                     </div>
                 </div>
-                {!! $grupos->links() !!}
+              
+
+                
+
             </div>
         </div>
     </div>

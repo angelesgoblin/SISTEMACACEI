@@ -33,13 +33,14 @@ class EvaluaciondocenteController extends Controller
         $evaluaciondocentes = DB::table('evaluaciondocentes')
             ->join('catalogodocentes', 'catalogodocentes.rfc', '=', 'evaluaciondocentes.rfc')
             ->join('organigramas', 'organigramas.clave_area', '=', 'catalogodocentes.clave_area')
-            ->select('evaluaciondocentes.id','evaluaciondocentes.rfc','evaluaciondocentes.periodo','evaluaciondocentes.total_cuantitativo','evaluaciondocentes.total_cualitativo', 'evaluaciondocentes.documento')
+            ->join('periodos','evaluaciondocentes.periodo','=','periodos.periodo')
+            ->select('evaluaciondocentes.id','catalogodocentes.apellidos_empleado','catalogodocentes.nombre_empleado','periodos.identificacion_corta','evaluaciondocentes.total_cuantitativo','evaluaciondocentes.total_cualitativo', 'evaluaciondocentes.documento')
             ->where('organigramas.descripcion_area','like', '%' . $texto1 . '%') 
-            ->where('evaluaciondocentes.periodo','like', '%' . $texto2 .'%')
+            ->where('periodos.identificacion_corta','like', '%' . $texto2 .'%')
             ->get();
           return view('evaluaciondocente.index',compact('evaluaciondocentes','texto1','texto2'));
          
-    
+        
     }
 
     /**

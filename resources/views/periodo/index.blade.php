@@ -32,8 +32,8 @@
                                     <tr>
                                         <th>No.</th>
                                         
-										<th>Periodo</th>
-										<th>Identificación Larga</th>
+									 <!-- <th>Periodo</th>
+										<th>Identificación Larga</th>-->
 										<th>Identificación Corta</th>
 										<th>Estatus</th>
 										<th>Fecha Inicio</th>
@@ -50,8 +50,8 @@
                                         <tr>
                                             <td>{{ ++$i }}</td>
                                             
-											<td>{{ $periodo->periodo }}</td>
-											<td>{{ $periodo->identificacion_larga }}</td>
+										<!--	<td>{{ $periodo->periodo }}</td>
+											<td>{{ $periodo->identificacion_larga }}</td>-->
 											<td>{{ $periodo->identificacion_corta }}</td>
 											<td>{{ $periodo->status }}</td>
 											<td>{{ $periodo->fecha_inicio }}</td>
@@ -59,8 +59,8 @@
 
                                             <td>
                                                 <form action="{{ route('periodos.destroy',$periodo->periodo) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('periodos.show',$periodo->periodo) }}"><i class="fa fa-fw fa-eye"></i>Mostrar</a>
-                                           <!--         <a class="btn btn-sm btn-success" href="{{ route('periodos.edit',$periodo->periodo) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
+                                               <!--      <a class="btn btn-sm btn-primary " href="{{ route('periodos.show',$periodo->periodo) }}"><i class="fa fa-fw fa-eye"></i>Mostrar</a>
+                                                   <a class="btn btn-sm btn-success" href="{{ route('periodos.edit',$periodo->periodo) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>-->

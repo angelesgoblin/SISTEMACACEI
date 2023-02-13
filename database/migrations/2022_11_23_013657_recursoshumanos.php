@@ -13,19 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        //
-        Schema::create('cedulaceros', function (Blueprint $table) {
+        Schema::create('recursoshumanos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->char('rfc',13);
             $table->char('periodo',5);
+            $table->longText('nombre');
             $table->longText('documento')->nullable();
-            //$table->longText('documentoh')->nullable();
             
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
-
-            $table->foreign('rfc')->references('rfc')->on('horarios')->onDelete('cascade');          
-            $table->foreign('periodo')->references('periodo')->on('horarios')->onDelete('cascade');          
+         
+            $table->foreign('periodo')->references('periodo')->on('periodos')->onDelete('cascade');          
             
         });
     }

@@ -3,13 +3,13 @@
         
         <div class="form-group">
             {{ Form::label('rfc') }}
-            {{ Form::text('rfc', $evaluaciondepartamento->rfc, ['class' => 'form-control' . ($errors->has('rfc') ? ' is-invalid' : ''), 'placeholder' => 'Rfc']) }}
+            {{ Form::label('rfc', $evaluaciondepartamento->rfc, ['class' => 'form-control' . ($errors->has('rfc') ? ' is-invalid' : ''), 'placeholder' => 'Rfc']) }}
             {!! $errors->first('rfc', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <br>
         <div class="form-group">
             {{ Form::label('periodo') }}
-            {{ Form::text('periodo', $evaluaciondepartamento->periodo, ['class' => 'form-control' . ($errors->has('periodo') ? ' is-invalid' : ''), 'placeholder' => 'Periodo']) }}
+            {{ Form::label('periodo', $evaluaciondepartamento->periodo, ['class' => 'form-control' . ($errors->has('periodo') ? ' is-invalid' : ''), 'placeholder' => 'Periodo']) }}
             {!! $errors->first('periodo', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <br>

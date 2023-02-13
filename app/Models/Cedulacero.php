@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $rfc
  * @property $periodo
  * @property $documento
+ * @property $documentoh
  * @property $created_at
  * @property $updated_at
  *
@@ -26,6 +27,7 @@ class Cedulacero extends Model
 		'rfc' => 'required',
 		'periodo' => 'required',
 		'documento' => 'required',
+        'documentoh' => 'required',
     ];
 
     protected $perPage = 20;
@@ -35,7 +37,7 @@ class Cedulacero extends Model
      *
      * @var array
      */
-    protected $fillable = ['id','rfc','periodo','documento'];
+    protected $fillable = ['id','rfc','periodo','documento', 'documentoh'];
 
 
     /**

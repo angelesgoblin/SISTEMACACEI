@@ -37,8 +37,8 @@
 
        
             <div class="input-group">
-                    <input type="text" class="form-control" id="texto1"name="texto1" value="{{@$texto1}}" placeholder="Ingrese Nombre" >
-                    <input type="text" class="form-control" name="texto2" value="{{@$texto2}}" placeholder="Ingrese clave de periodo">
+                    <input type="text" class="form-control" id="texto1"name="texto1" value="{{@$texto1}}" placeholder="Ingrese Departamento" >
+                    <input type="text" class="form-control" name="texto2" value="{{@$texto2}}" placeholder="Ingrese Periodo">
             
                     <input type="submit" class="btn btn-primary" value="Buscar" >
                     
@@ -58,8 +58,7 @@
                     <table id="keywords" cellspacing="0" cellpadding="0">
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>RFC</th>
+                            <th class="align">Docente</th>
                             <th>Periodo</th>
                             <th>Total cuantitativo</th>
                             <th>Total cualitativo</th>
@@ -82,10 +81,9 @@
                                         @else
                                     @foreach ($evaluaciondocentes as $evaluaciondocente)
                                         <tr>
-                                            <td>{{ $evaluaciondocente->id }}</td>
                                             
-											<td class="align">{{ $evaluaciondocente->rfc }}</td>
-											<td class="align">{{ $evaluaciondocente->periodo }}</td>
+											<td class="align">{{ $evaluaciondocente->apellidos_empleado}} {{$evaluaciondocente->nombre_empleado}}</td>
+											<td class="align">{{ $evaluaciondocente->identificacion_corta }}</td>
 											<td class="align">{{ $evaluaciondocente->total_cuantitativo }}</td>
 											<td class="align">{{ $evaluaciondocente->total_cualitativo }}</td>
 											<td class="align"><a href="{{ route('evaluaciondocentes.download', $evaluaciondocente->id)}}">

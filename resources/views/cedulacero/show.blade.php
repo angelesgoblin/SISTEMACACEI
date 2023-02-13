@@ -32,8 +32,12 @@
                             {{ $cedulacero->periodo }}
                         </div>
                         <div class="form-group">
-                            <strong>Documento:</strong>
+                            <strong>Cedula cero:</strong>
                             {{ $cedulacero->documento }}
+                        </div>
+                        <div class="form-group">
+                            <strong>Horario:</strong>
+                            {{ $cedulacero->documentoh }}
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary" href="{{ route('cedulaceros.index') }}"> Regresar</a>

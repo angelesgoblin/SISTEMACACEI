@@ -31,10 +31,12 @@ class EvaluaciondepartamentoController extends Controller
         $evaluaciondepartamentos = DB::table('evaluaciondepartamentos')
             ->join('catalogodocentes', 'catalogodocentes.rfc', '=', 'evaluaciondepartamentos.rfc')
             ->join('organigramas', 'organigramas.clave_area', '=', 'catalogodocentes.clave_area')
-            ->select('evaluaciondepartamentos.id','evaluaciondepartamentos.rfc','evaluaciondepartamentos.periodo','calificacion_cuantitativa','calificacion_cualitativa', 'evaluaciondepartamentos.documento')
+            ->join('periodos','evaluaciondepartamentos.periodo','=','periodos.periodo')
+            ->select('evaluaciondepartamentos.id','catalogodocentes.apellidos_empleado','catalogodocentes.nombre_empleado','periodos.identificacion_corta','calificacion_cuantitativa','calificacion_cualitativa', 'evaluaciondepartamentos.documento')
             ->where('organigramas.descripcion_area','like', '%' . $texto1 . '%') 
-            ->where('evaluaciondepartamentos.periodo','like', '%' . $texto2 .'%')
+            ->where('periodos.identificacion_corta','like', '%' . $texto2 .'%')
             ->get();
+
           return view('evaluaciondepartamento.index',compact('evaluaciondepartamentos','texto1','texto2'));
          
     }

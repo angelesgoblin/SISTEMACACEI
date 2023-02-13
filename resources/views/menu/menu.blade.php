@@ -31,18 +31,18 @@
                   
                       <li class="submenu">
                           <a href="#">
-                              <i class="glyphicon glyphicon-stab "></i><i class="fas fa-user"></i> {{ Auth::user()->name }}
+                          <i class="glyphicon glyphicon-stab "></i><i class="fas fa-user"></i> {{ Auth::user()->name }}
                               <span class="caret pull-right"></span>
                            
                           </a>
                       <!-- Sub menu -->
                       <ul>
-                          <!--
+                          
                         @if(Auth::check())   
                             <li><a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             <i class="fas fa-home"></i> {{ Auth::user()->name }}
                             </a></li>
-                        @endif -->
+                        @endif 
                       <li><a class="dropdown-item" href="{{ route('logout') }}"
                              onclick="event.preventDefault();
                                            document.getElementById('logout-form').submit();">
@@ -65,11 +65,7 @@
                 </div>
             </a>
             @can('actividadesapoyos.index')
-            <a href="#" class="selected">
-                <div class="option">
-                    <a href="{{ url('/actividadesapoyos') }}"><i class="fas fa-check-square"></i>Actividades</a>
-                </div>
-            </a>
+            
             <a href="#" class="selected">
                 <div class="option">
                     <a href="{{ url('/cedulaceros') }}"><i class="fas fa-check-square"></i>Cédula cero</a>
@@ -104,7 +100,7 @@
 
             <a href="#">
                 <div class="option">
-                    <a href="{{ url('/horarios') }}"><i class="fas fa-check-square"></i>Horario</a>
+                    <a href="{{ url('/buscar') }}"><i class="fas fa-check-square"></i>Horario</a>
                 </div>
             </a>
 
@@ -126,37 +122,47 @@
                 </div>
             </a>
 
+            
+
             <a href="#">
                 <div class="option">
 					<a href="{{ url('/grupos') }}"><i class="fas fa-check-square"></i>Grupo</a>
                 </div>
             </a>
+          
+            <div class="sidebar " style="display: block; background-color: #094d85;"  >
+            <!-- herramientas administrador -->
+            <ul class="nav">
+                  
+                      <li class="submenu">
+                          <a href="#">
+                              <i class=""></i><i class=""></i> Más Opciones
+                              <span class="caret pull-right"></span>
+                           
+                          </a>
+                      <!-- Sub menu -->
+                      <ul>
+                          
+                      <li>
+					
+               
+					<a href="{{ url('/roles') }}"><i class=""></i>Roles</a>
 
-            
-            <a href="#">
-                <div class="option">
-					<a href="{{ url('/users') }}"><i class="fas fa-check-square"></i>Usuarios</a>
-                </div>
-            </a>
+                    <a href="{{ url('/users') }}"><i class=""></i>Usuarios</a>
+                      
+					<a href="{{ route('register') }}"><i class=""></i>Registrar usuarios</a>
+                
+					<a href="{{ url('/herramientaadmin') }}"><i class=""></i>Herramientas</a>
 
-            <a href="#">
-                <div class="option">
-					<a href="{{ url('/roles') }}"><i class="fas fa-check-square"></i>Roles</a>
-                </div>
-            </a>
+</div>
+                      </li>
+                      </ul>
+                      </li>
+          
+                  </ul>
 
-            <a href="#">
-                <div class="option">
-					<a href="{{ route('register') }}"><i class="fas fa-check-square"></i>Registrar usuarios</a>
-                </div>
-            </a>
-           
-            
             @endcan
            
-            
-            
-       
     
     </div>
 

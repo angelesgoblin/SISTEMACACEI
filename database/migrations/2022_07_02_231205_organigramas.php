@@ -16,6 +16,7 @@ return new class extends Migration
         //
         Schema::create('organigramas', function (Blueprint $table) {
             $table->char('clave_area', 6);
+            $table->char('siglas', 6);
             $table->string('descripcion_area', 200);
             $table->char('area_depende', 6);
             $table->char('nivel', 1);  

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Periodo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class PeriodoController
@@ -44,9 +45,7 @@ class PeriodoController extends Controller
     public function store(Request $request)
     {
         request()->validate(Periodo::$rules);
-
         $periodo = Periodo::create($request->all());
-
         return redirect()->route('periodos.index')
             ->with('success', 'Periodo created successfully.');
     }
@@ -87,9 +86,7 @@ class PeriodoController extends Controller
     public function update(Request $request, Periodo $periodo)
     {
         request()->validate(Periodo::$rules);
-
         $periodo->update($request->all());
-
         return redirect()->route('periodos.index')
             ->with('success', 'Periodo updated successfully');
     }
@@ -103,7 +100,31 @@ class PeriodoController extends Controller
     {
         //$periodo = Periodo::find($id)->delete();
         $periodo = Periodo::where('periodo', $id)->first();
+       
         return redirect()->route('periodos.index')
             ->with('success', 'Periodo deleted successfully');
     }
+
+    public function herraadmin()
+    {
+        return view('periodo.herramienta');
+
+    }
+
+   public function eliminar()
+    {
+        $periodo = Periodo::where('created_at','<=', now()->subYears(3))->delete();//borrar datos de hace 3 años. tablas vinculadas a periodo
+       // DB::select(DB::raw("call llenartabla"));//llenar tablas cedula, evaluaciones
+        
+        return view('periodo.herramienta')
+        ->with('success', 'Se eliminaron los datos con exito');
+    }
+    public function llenartablas()
+    {
+        DB::select(DB::raw("call llenartabla"));//llenar tablas cedula, evaluaciones
+        
+        return view('periodo.herramienta')
+        ->with('success', 'Se actualizaron los datos con exito');
+    }
+
 }

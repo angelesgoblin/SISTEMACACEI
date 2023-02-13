@@ -44,9 +44,7 @@ class OrganigramaController extends Controller
     public function store(Request $request)
     {
         request()->validate(Organigrama::$rules);
-
         $organigrama = Organigrama::create($request->all());
-
         return redirect()->route('organigramas.index')
             ->with('success', 'Organigrama created successfully.');
     }
@@ -60,7 +58,7 @@ class OrganigramaController extends Controller
     public function show($id)
     {
         //$organigrama = Organigrama::find($id);
-        $organigrama = Organigrama::where('clave_area', $id)->first();;
+        $organigrama = Organigrama::where('clave_area', $id)->first();
         return view('organigrama.show', compact('organigrama'));
     }
 
@@ -73,7 +71,7 @@ class OrganigramaController extends Controller
     public function edit($id)
     {
        // $organigrama = Organigrama::find($id);
-       $organigrama = Organigrama::where('clave_area', $id)->first();;
+       $organigrama = Organigrama::where('clave_area', $id)->first();
         return view('organigrama.edit', compact('organigrama'));
     }
 
@@ -86,12 +84,11 @@ class OrganigramaController extends Controller
      */
     public function update(Request $request, Organigrama $organigrama)
     {
+        
         request()->validate(Organigrama::$rules);
-
         $organigrama->update($request->all());
-
         return redirect()->route('organigramas.index')
-            ->with('success', 'Organigrama updated successfully');
+            ->with('success', 'Se actualizo el dato');
     }
 
     /**

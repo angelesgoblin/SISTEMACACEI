@@ -83,55 +83,63 @@ class HorarioController extends Controller
 
     public function busqueda(Request $request)
     {
-        
-            
           $texto1=trim($request->get('texto1'));
           $texto2=trim($request->get('texto2'));
           $texto3=trim($request->get('texto3'));
-            
+
             $horarios=DB::table('horarios')
             ->join('catalogodocentes', 'horarios.rfc', '=', 'catalogodocentes.rfc')
             ->join('materias', 'horarios.materia', '=', 'materias.materia')
             ->join('grupos','horarios.grupo','=','grupos.grupo')
-            ->select('horarios.periodo', 'catalogodocentes.nombre_empleado','horarios.rfc', 
-                    'materias.nombre_completo_materia','horarios.grupo')
-            ->whereNull('grupos.paralelo_de')
+            ->join('periodos', 'horarios.periodo', '=', 'periodos.periodo' )
+            ->join('organigramas', 'catalogodocentes.clave_area', '=', 'organigramas.clave_area')
+            ->select('periodos.identificacion_corta', 'catalogodocentes.nombre_empleado','horarios.rfc', 
+                    'materias.nombre_completo_materia','horarios.grupo','organigramas.descripcion_area')
             ->where('catalogodocentes.apellidos_empleado','like', '%' . $texto1 . '%') 
             ->where('catalogodocentes.nombre_empleado','like', '%' . $texto2 . '%')
-            ->where('horarios.periodo','like', '%' . $texto3 .'%')
+            ->where('periodos.identificacion_corta','like', '%' . $texto3 .'%')
+            ->where('horarios.tipo_horario','=','D')
+            ->whereNull('grupos.paralelo_de')
+
             ->selectRaw('sum(TIMESTAMPDIFF(HOUR, hora_inicial,hora_final)) as Horas')
-            ->groupBy('horarios.grupo')
+            ->groupBy('horarios.materia','horarios.grupo')
             ->get();//poner otra validación para las personas que coinciden en grupos con los mismos nombres
 
+            $area = DB::table('horarios')
+            ->join('catalogodocentes', 'horarios.rfc', '=', 'catalogodocentes.rfc')
+            ->join('periodos', 'horarios.periodo', '=', 'periodos.periodo' )
+            ->join('organigramas', 'catalogodocentes.clave_area', '=', 'organigramas.clave_area')
+           
+            ->select('organigramas.descripcion_area')
+            
+            ->where('catalogodocentes.apellidos_empleado','like', '%' . $texto1 . '%') 
+            ->where('catalogodocentes.nombre_empleado','like', '%' . $texto2 . '%')
+            ->where('periodos.identificacion_corta','like', '%' . $texto3 .'%')
+            ->where('horarios.tipo_horario','=','D')
+
+            ->groupBy('horarios.materia','horarios.grupo')
+            ->distinct('organigramas.descripcion_area')
+            ->get()
+            ->pluck('descripcion_area');
+           // 
+           
+           
             $horariosact=DB::table('horarios')
             ->join('catalogodocentes', 'horarios.rfc', '=', 'catalogodocentes.rfc')
             ->join('actividadesapoyos', 'horarios.actividad', '=', 'actividadesapoyos.actividad')
-            ->select('horarios.periodo', 'catalogodocentes.nombre_empleado','horarios.rfc', 
+            ->join('periodos', 'horarios.periodo', '=', 'periodos.periodo' )
+            ->select('periodos.identificacion_corta', 'catalogodocentes.nombre_empleado','horarios.rfc', 
                     'actividadesapoyos.descripcion_actividad','horarios.grupo')
             ->where('catalogodocentes.apellidos_empleado','like', '%' . $texto1 . '%') 
             ->where('catalogodocentes.nombre_empleado','like', '%' . $texto2 . '%')
-            ->where('horarios.periodo','like', '%' . $texto3 .'%')
+            ->where('periodos.identificacion_corta','like', '%' . $texto3 .'%')
             ->where('horarios.tipo_horario','=','Y')
             ->selectRaw('sum(TIMESTAMPDIFF(HOUR, hora_inicial,hora_final)) as Horas')
             ->groupBy('horarios.actividad')
             ->get();
 
-          /*  $horariosad=DB::table('horarios')
-            ->join('catalogodocentes', 'horarios.rfc', '=', 'catalogodocentes.rfc')
-            ->join('actividadesapoyos', 'horarios.actividad', '=', 'actividadesapoyos.actividad')
-            ->select('horarios.periodo', 'catalogodocentes.nombre_empleado','horarios.rfc', 
-                    'horarios.dia_semana')
-            ->where('catalogodocentes.apellidos_empleado','like', '%' . $texto1 . '%') 
-            ->where('catalogodocentes.nombre_empleado','like', '%' . $texto2 . '%')
-            ->where('horarios.periodo','like', '%' . $texto3 .'%')
-            ->where('horarios.tipo_horario','=','A')
-            ->selectRaw('sum(TIMESTAMPDIFF(HOUR, hora_inicial,hora_final)) as Horas')
-            ->groupBy('horarios.dia_semana')///NO SALE PORQUE ACTIVIDAD ES NULO
-            ->get();*/
-
-           $horarioe= view('horario.buscarExport');
            
-        return view('horario.buscar',compact('horarios','horariosact','texto1','texto2','texto3'));
+        return view('horario.buscar',compact('horarios','horariosact','texto1','texto2','texto3','area'));
        // Excel::download(new HorarioExport($horarioe),'horario.xlsx'));
     }
 

@@ -51,7 +51,7 @@ class GoogleDriveServiceProvider extends ServiceProvider
 
         return new \League\Flysystem\Filesystem($adapter);
     });*/
-
+    
     \Storage::extend("google", function($app, $config) {
         $client = new \Google_Client();
         $client->setClientId($config['clientId']);
@@ -66,7 +66,7 @@ class GoogleDriveServiceProvider extends ServiceProvider
         $tokenPath = 'token.json';
         if (file_exists($tokenPath)) {
           $accessToken = json_decode(file_get_contents($tokenPath), true);
-          $client->setAccessToken($config['accessToken']);// $client->setAccessToken($accessToken);
+          $client->setAccessToken($config[$accessToken]);// $client->setAccessToken($accessToken);
         }
         
         $service = new \Google_Service_Drive($client);

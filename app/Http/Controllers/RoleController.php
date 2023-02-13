@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
 use Spatie\Permission\Models\Permission;
+
+use App\Http\Controllers\Periodo;
 /**
  * Class RoleController
  * @package App\Http\Controllers
@@ -112,11 +114,14 @@ class RoleController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
+
     public function destroy(Role $role)
     {
-       
         $role->delete();
         return redirect()->route('roles.index')
             ->with('info', 'El rol se eliminó con exito');
     }
+
+
+    
 }

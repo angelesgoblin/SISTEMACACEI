@@ -24,20 +24,23 @@ class Organigrama extends Model
     
     static $rules = [
 		'clave_area' => 'required',
+        'siglas' => 'required',
 		'descripcion_area' => 'required',
 		'area_depende' => 'required',
 		'nivel' => 'required',
     ];
 
     protected $perPage = 20;
-
+    protected $primaryKey = 'clave_area';
     /**
      * Attributes that should be mass-assignable.
      *
      * @var array
      */
-    protected $fillable = ['clave_area','descripcion_area','area_depende','nivel'];
-
+    protected $fillable = ['clave_area','siglas','descripcion_area','area_depende','nivel'];
+    
+       
+    
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

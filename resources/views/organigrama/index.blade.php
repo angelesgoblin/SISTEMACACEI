@@ -31,9 +31,9 @@
                         <thead>
                     
                                     <tr>
-                                        <th>No</th>
                                         
 										<th >Clave de Área</th>
+                                        <th >Siglas</th>
 										<th >Descripción de Área</th>
 										<th >Area Depende</th>
 										<th >Nivel</th>
@@ -44,18 +44,18 @@
                                 <tbody>
                                     @foreach ($organigramas as $organigrama)
                                         <tr>
-                                            <td>{{ ++$i }}</td>
                                             
 											<td>{{ $organigrama->clave_area }}</td>
+                                            <td>{{ $organigrama->siglas }}</td>
 											<td>{{ $organigrama->descripcion_area }}</td>
 											<td>{{ $organigrama->area_depende }}</td>
 											<td>{{ $organigrama->nivel }}</td>
 
                                             <td>
                                                 <form action="{{ route('organigramas.destroy',$organigrama->clave_area) }}" method="POST">
-                                                    <a class="btn btn-sm btn-primary " href="{{ route('organigramas.show',$organigrama->clave_area) }}"><i class="fa fa-fw fa-eye"></i>Mostrar</a>
-                                           <!--         <a class="btn btn-sm btn-success" href="{{ route('organigramas.edit',$organigrama->clave_area) }}"><i class="fa fa-fw fa-edit"></i> Edit</a>
-                                                    @csrf
+                                                <!--     <a class="btn btn-sm btn-primary " href="{{ route('organigramas.show',$organigrama->clave_area) }}"><i class="fa fa-fw fa-eye"></i>Mostrar</a>-->
+                                                 <a class="btn btn-sm btn-success" href="{{ route('organigramas.edit',$organigrama->clave_area) }}"><i class="fa fa-fw fa-edit"></i> Editar siglas</a>
+                                               <!--        @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Delete</button>
                                                     <button type="submit" onclick="return confirm('¿Seguro que quieres borrar?')" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i> Eliminar</button>-->
